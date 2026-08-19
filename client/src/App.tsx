@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Login from "./Login";
+import BoardView from "./BoardView";
 import "./App.css";
 
 export default function App() {
@@ -10,15 +11,6 @@ export default function App() {
     setLoggedIn(false);
   }
 
-  if (!loggedIn) {
-    return <Login onLogin={() => setLoggedIn(true)} />;
-  }
-
-  return (
-    <div className="logged-in">
-      <h1 className="brand">TaskFlow</h1>
-      <p>You are logged in. The board view comes next.</p>
-      <button onClick={logout}>Log out</button>
-    </div>
-  );
+  if (!loggedIn) return <Login onLogin={() => setLoggedIn(true)} />;
+  return <BoardView onLogout={logout} />;
 }
